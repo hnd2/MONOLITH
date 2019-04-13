@@ -26,17 +26,17 @@ return {
     {
         type    = 'joystick',
         mapping = {
-            [INPUT_UP]    = { 'axis0', reverse = false },
-            [INPUT_LEFT]  = { 'axis1', reverse = false },
-            [INPUT_DOWN]  = { 'axis0', reverse = true },
-            [INPUT_RIGHT] = { 'axis1', reverse = true },
-            [INPUT_A]     = 'a',
-            [INPUT_B]     = 'b',
-            [INPUT_C]     = 'x',
-            [INPUT_D]     = 'y',
+            [INPUT_UP]    = { index = 0, type = 'axis', reverse = false },
+            [INPUT_LEFT]  = { index = 1, type = 'axis', reverse = false },
+            [INPUT_DOWN]  = { index = 0, type = 'axis', reverse = true },
+            [INPUT_RIGHT] = { index = 1, type = 'axis', reverse = true },
+            [INPUT_A]     = { index = 0, type = 'button' },
+            [INPUT_B]     = { index = 1, type = 'button' },
+            [INPUT_C]     = { index = 2, type = 'button' },
+            [INPUT_D]     = { index = 3, type = 'button' },
         },
         options = {
-            joystickName = 'unique-controller-name',
+            guid = '',
         },
     },
 }

@@ -7,23 +7,68 @@ local mt = { __index = _M }
 --------------------------------------------------
 local Constants = {}
 --- 'keyboard'
--- @tfield string KEYBOARD 'keyboard'
-Constants.TYPE_KEYBOARD = 'keyboard'
+-- @tfield string INPUT_TYPE_KEYBOARD 'keyboard'
+Constants.INPUT_TYPE_KEYBOARD = 'keyboard'
 --- 'joystick'
--- @tfield string JOYSTICK 'joystick'
-Constants.TYPE_JOYSTICK = 'joystick'
+-- @tfield string INPUT_TYPE_JOYSTICK 'joystick'
+Constants.INPUT_TYPE_JOYSTICK = 'joystick'
+--- 'axis'
+-- @tfield string JOYSTICK_INPUT_TYPE_AXIS 'axis'
+Constants.JOYSTICK_INPUT_TYPE_AXIS = 'axis'
+--- 'button'
+-- @tfield string JOYSTICK_INPUT_TYPE_BUTTON 'button'
+Constants.JOYSTICK_INPUT_TYPE_BUTTON = 'button'
 
 --------------------------------------------------
 -- User setting
 -- @table UserSetting
 -- @tfield[opt=Constants.TYPE_KEYBOARD] string type Controller type
--- @tfield table mapping axis/button mapping.
+-- @tfield table mapping axis/button mapping
+-- @tfield table options type specific options
 UserSetting = {
     type    = Constants.TYPE_KEYBOARD,
-    mapping = {}
+    mapping = {},
+    options = {},
 }
 
+--------------------------------------------------
+local function getJoystick(userSetting)
+    local guid = userSetting.options.guid
+    if guid == nil then
+        error('Joystick setting needs contain guid')
+    end
+    local joysticks = love.joystick.getJoysticks()
+    for _, joystick in ipairs(joysticks) do
+        if joystick:getGUID() == guid then
+            return joystick
+        end
+    end
+    return nil
+end
 
+--------------------------------------------------
+local function getJoystickValue(joystick, userSetting, key)
+    local map = userSetting[key]
+    if map == nil then
+        error('Joystick mapping do not contains key: ' .. key)
+    end
+    local value = 0.0
+    if map.type == Constants.JOYSTICK_INPUT_TYPE_AXIS then
+        value = joystick:getAxis(key)
+    elseif map.type == Constants.JOYSTICK_INPUT_TYPE_BUTTON then
+        if joystick:isDown(key) then
+            value = 1.0
+        else
+            value = 0.0
+        end
+    else
+        error('Invalid joystick type: ' .. key.type)
+    end
+    if map.reverse then
+        value = value * -1
+    end
+    return value
+end
 
 --------------------------------------------------
 -- Constructor
@@ -90,12 +135,18 @@ function _M:getButton(user, key)
     if userSetting == nil then
         error('user[' .. tostring(user) .. '] setting is not set.')
     end
-    if userSetting.type == Constants.TYPE_KEYBOARD then
+    if userSetting.type == Constants.INPUT_TYPE_KEYBOARD then
         return love.keyboard.isDown(userSetting.mapping[key])
-    elseif userSetting.type == Constants.TYPE_JOYSTICK then
-        return false
+    elseif userSetting.type == Constants.INPUT_TYPE_JOYSTICK then
+        local joystick = getJoystick(userSetting)
+        if joystick == nil then
+            return false
+        end
+        local value = getJoystickValue(joystick, userSetting, key)
+        return value > 0.5
     end
 end
+
 
 --------------------------------------------------
 -- Get button is just down.
@@ -134,14 +185,18 @@ end
 -- @return float value, range: -1.0 ~ 1.0
 function _M:getAxis(user, key)
     local userSetting = self.userSettings[user]
-    if userSetting.type == input.TYPE_KEYBOARD then
+    if userSetting.type == Constants.INPUT_TYPE_KEYBOARD then
         if love.keyboard.isDown(userSetting.mapping[key]) then
             return 1.0
         else
             return 0.0
         end
-    elseif userSetting.type == input.TYPE_JOYSTICK then
-        return 0.0
+    elseif userSetting.type == Constants.INPUT_TYPE_JOYSTICK then
+        local joystick = getJoystick(userSetting)
+        if joystick == nil then
+            return false
+        end
+        return getJoystickValue(joystick, userSetting, key)
     end
 end
 
