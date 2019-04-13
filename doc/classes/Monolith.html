@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>MONOLITH</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><strong>Monolith</strong></li>
+  <li><a href="../classes/Input.html">Input</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Monolith</code></h1>
+<p>Monolith's core class</p>
+<p></p>
+
+
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Monolith.InitOptions">Monolith.InitOptions</a></td>
+	<td class="summary">InitOptions</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Monolith.input">Monolith.input</a></td>
+	<td class="summary">Input</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:new">Monolith:new ([options])</a></td>
+	<td class="summary">Constructor.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:beginDraw">Monolith:beginDraw ()</a></td>
+	<td class="summary">Begin draw.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:endDraw">Monolith:endDraw ()</a></td>
+	<td class="summary">End draw.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:sendToLed">Monolith:sendToLed (imageData)</a></td>
+	<td class="summary">Send image data to LED matrix.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:getResolution">Monolith:getResolution ()</a></td>
+	<td class="summary">Get resolution.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Monolith:getFrameCount">Monolith:getFrameCount ()</a></td>
+	<td class="summary">Get elapsed frame count.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Monolith.InitOptions"></a>
+    <strong>Monolith.InitOptions</strong>
+    </dt>
+    <dd>
+    InitOptions
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">resolution</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         Game resolution.
+         (<em>default</em> {128 128})
+        </li>
+        <li><span class="parameter">windowScale</span>
+            <span class="types"><span class="type">number</span></span>
+         Window scale
+         (<em>default</em> 1)
+        </li>
+        <li><span class="parameter">targetFps</span>
+            <span class="types"><span class="type">number</span></span>
+         Target frame rate
+         (<em>default</em> 60)
+        </li>
+        <li><span class="parameter">useCanvas</span>
+            <span class="types"><span class="type">boolean</span></span>
+         If true, use canvas, else use screenshot
+         (<em>default</em> true)
+        </li>
+        <li><span class="parameter">ledSize</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         LED matrix board unit size
+         (<em>default</em> {64 64})
+        </li>
+        <li><span class="parameter">ledChains</span>
+            <span class="types"><span class="type">number</span></span>
+         LED matrix chains size
+         (<em>default</em> 4)
+        </li>
+        <li><span class="parameter">ledParallels</span>
+            <span class="types"><span class="type">number</span></span>
+         LED matrix parallels size
+         (<em>default</em> 1)
+        </li>
+        <li><span class="parameter">ledPixelMapper</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         LED matrix mapper name
+         (<em>default</em> 'Z-mapper')
+        </li>
+        <li><span class="parameter">ledBrightness</span>
+            <span class="types"><span class="type">number</span></span>
+         LED matrix brightness, range: 0.0 ~ 1.0
+         (<em>default</em> 1.0)
+        </li>
+        <li><span class="parameter">ledColorBits</span>
+            <span class="types"><span class="type">number</span></span>
+         LED matrix size of color bit, range: 1 ~ 8
+         (<em>default</em> 8)
+        </li>
+        <li><span class="parameter">ledResetChip</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Reset LED matrix chip is enabled
+         (<em>default</em> true)
+        </li>
+        <li><span class="parameter">inputEnabled</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Input field is enabled
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Monolith.input"></a>
+    <strong>Monolith.input</strong>
+    </dt>
+    <dd>
+    Input
+
+
+    <ul>
+        <li><span class="parameter">input</span>
+            <span class="types"><a class="type" href="../classes/Input.html#">Input</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Monolith:new"></a>
+    <strong>Monolith:new ([options])</strong>
+    </dt>
+    <dd>
+    Constructor.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">options</span>
+            <span class="types"><a class="type" href="../classes/Monolith.html#Monolith.InitOptions">Monolith.InitOptions</a></span>
+         Init options
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="../classes/Monolith.html#">Monolith</a></span>
+        Monolith instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Monolith:beginDraw"></a>
+    <strong>Monolith:beginDraw ()</strong>
+    </dt>
+    <dd>
+    Begin draw.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Monolith:endDraw"></a>
+    <strong>Monolith:endDraw ()</strong>
+    </dt>
+    <dd>
+    End draw.
+ Send image data to led matrix.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Monolith:sendToLed"></a>
+    <strong>Monolith:sendToLed (imageData)</strong>
+    </dt>
+    <dd>
+    Send image data to LED matrix.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">imageData</span>
+            <span class="types"><span class="type">love.ImageData</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Monolith:getResolution"></a>
+    <strong>Monolith:getResolution ()</strong>
+    </dt>
+    <dd>
+    Get resolution.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        x</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        y</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Monolith:getFrameCount"></a>
+    <strong>Monolith:getFrameCount ()</strong>
+    </dt>
+    <dd>
+    Get elapsed frame count.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        frame count
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-04-14 03:29:29 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
