@@ -34,12 +34,14 @@ UserSetting = {
 --------------------------------------------------
 local function getJoystick(userSetting)
     local guid = userSetting.options.guid
-    if guid == nil then
-        error('Joystick setting needs contain guid')
+    local name = userSetting.options.name
+    if guid == nil and name == nil then
+        error('Joystick setting needs contain guid or name')
     end
     local joysticks = love.joystick.getJoysticks()
     for _, joystick in ipairs(joysticks) do
-        if joystick:getGUID() == guid then
+        if joystick:getGUID() == guid
+            or joystick:getName() == name then
             return joystick
         end
     end
@@ -48,15 +50,16 @@ end
 
 --------------------------------------------------
 local function getJoystickValue(joystick, userSetting, key)
-    local map = userSetting[key]
+    local map = userSetting.mapping[key]
     if map == nil then
         error('Joystick mapping do not contains key: ' .. key)
     end
     local value = 0.0
+    local index = map.index
     if map.type == Constants.JOYSTICK_INPUT_TYPE_AXIS then
-        value = joystick:getAxis(key)
+        value = joystick:getAxis(index)
     elseif map.type == Constants.JOYSTICK_INPUT_TYPE_BUTTON then
-        if joystick:isDown(key) then
+        if joystick:isDown(index) then
             value = 1.0
         else
             value = 0.0

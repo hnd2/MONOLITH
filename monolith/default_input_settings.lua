@@ -26,17 +26,18 @@ return {
     {
         type    = 'joystick',
         mapping = {
-            [INPUT_UP]    = { index = 0, type = 'axis', reverse = false },
-            [INPUT_LEFT]  = { index = 1, type = 'axis', reverse = false },
-            [INPUT_DOWN]  = { index = 0, type = 'axis', reverse = true },
-            [INPUT_RIGHT] = { index = 1, type = 'axis', reverse = true },
-            [INPUT_A]     = { index = 0, type = 'button' },
-            [INPUT_B]     = { index = 1, type = 'button' },
-            [INPUT_C]     = { index = 2, type = 'button' },
-            [INPUT_D]     = { index = 3, type = 'button' },
+            [INPUT_UP]    = { index = 1, type = 'axis', reverse = false },
+            [INPUT_LEFT]  = { index = 2, type = 'axis', reverse = false },
+            [INPUT_DOWN]  = { index = 1, type = 'axis', reverse = true },
+            [INPUT_RIGHT] = { index = 2, type = 'axis', reverse = true },
+            [INPUT_A]     = { index = 1, type = 'button' },
+            [INPUT_B]     = { index = 2, type = 'button' },
+            [INPUT_C]     = { index = 3, type = 'button' },
+            [INPUT_D]     = { index = 4, type = 'button' },
         },
         options = {
             guid = '',
+            name = 'XInput Controller #1',
         },
     },
 }
