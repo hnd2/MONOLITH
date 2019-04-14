@@ -129,6 +129,19 @@ function _M:setUserSetting(user, setting)
 end
 
 --------------------------------------------------
+-- Get input is available
+-- @tparam number user user index
+-- @return bool value
+function _M:isAvailable(user)
+    local userSetting = self.userSettings[user]
+    if userSetting.type == Constants.INPUT_TYPE_KEYBOARD then
+        return true
+    elseif userSetting.type == Constants.INPUT_TYPE_JOYSTICK then
+        return getJoystick(userSetting) ~= nil
+    end
+end
+
+--------------------------------------------------
 -- Get button is down.
 -- @tparam number user user index
 -- @tparam object key button key
@@ -202,5 +215,3 @@ function _M:getAxis(user, key)
         return getJoystickValue(joystick, userSetting, key)
     end
 end
-
-return _M
