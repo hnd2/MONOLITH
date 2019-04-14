@@ -1,6 +1,7 @@
-package.cpath = package.cpath .. ';./monolith/?.so'
+local source_dir = love.filesystem.getSource()
+package.cpath = package.cpath .. ';'
+    .. source_dir .. '/monolith/?.so'
 
---------------------------------------------------
 -- Monolith's core class
 -- @classmod Monolith
 local _M = {}
@@ -9,7 +10,7 @@ local mt = { __index = _M }
 --------------------------------------------------
 -- Input
 -- @tfield Input input
-_M.input = require('monolith.input') 
+_M.input = require('monolith.input')
 
 --------------------------------------------------
 -- InitOptions
@@ -87,6 +88,7 @@ function _M.new(options)
         pwm_bits            = options.ledColorBits,
         brightness          = options.ledBrightness,
       })
+    -- object.ledMatrix.resetMatrix()
   end
 
   -- init window
