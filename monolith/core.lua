@@ -1,3 +1,5 @@
+package.cpath = package.cpath .. ';./monolith/?.so'
+
 --------------------------------------------------
 -- Monolith's core class
 -- @classmod Monolith
@@ -25,18 +27,19 @@ _M.input = require('monolith.input')
 -- @tfield[opt=true] boolean ledResetChip Reset LED matrix chip is enabled
 -- @tfield[opt=true] boolean inputEnabled Input field is enabled
 local InitOptions = {
-    resolution     = { 128, 128 },
-    windowScale    = 1,
-    targetFps      = 60,
-    useCanvas      = true,
-    ledSize        = { 64, 64 },
-    ledChains      = 4,
-    ledParallels   = 1,
-    ledPixelMapper = 'Z-mapper',
-    ledBrightness  = 1.0,
-    ledColorBits   = 8,
-    ledResetChip   = true,
-    inputEnabled   = true,
+    resolution       = { 128, 128 },
+    windowScale      = 1,
+    targetFps        = 60,
+    useCanvas        = true,
+    ledSize          = { 64, 64 },
+    ledChains        = 4,
+    ledParallels     = 1,
+    ledPixelMapper   = 'Z-mapper',
+    ledBrightness    = 1.0,
+    ledColorBits     = 8,
+    ledPwmNanoseconds = 100,
+    ledResetChip     = true,
+    inputEnabled     = true,
 }
 
 --------------------------------------------------
@@ -74,12 +77,16 @@ function _M.new(options)
     -- init led matrix
     if os == 'GNU/Linux' then
         require "LedMatrix"
-        object.ledMatrix = LedMatrix.new(
-            options.ledSize[1],
-            options.ledSize[2],
-            options.ledChains,
-            options.ledParallels,
-            options.ledPixelMapper)
+        object.ledMatrix = LedMatrix.new({
+            cols                = options.ledSize[1],
+            rows                = options.ledSize[2],
+            chain_length        = options.ledChains,
+            parallel            = options.ledParallels,
+            pixel_mapper_config = options.ledPixelMapper,
+            pwm_lsb_nanoseconds = options.ledPwmNanoseconds,
+            pwm_bits            = options.ledColorBits,
+            brightness          = options.ledBrightness,
+        })
     end
 
     -- init window
@@ -148,7 +155,7 @@ function _M:endDraw()
             love.graphics.captureScreenshot(
                 function(screenshot) imageData = screenshot end)
         end
-        self.sendToLed(imageData)
+        self:sendToLed(imageData)
     else
         if self.input ~= nil then
             self.input:update()

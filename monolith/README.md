@@ -7,17 +7,16 @@ local monolith = nil
 local players = {}
 
 --------------------------------------------------
-local Player = { index = 1 }
-function Player.new()
+local Player = {}
+function Player.new(index)
   local object = {
-    index = Player.index,
+    index = index,
     x = 0,
     y = 0,
   }
-  Player.index = Player.index + 1
   return setmetatable(
-      object,
-      { __index = Player })
+    object,
+    { __index = Player })
 end
 
 function Player:draw()
@@ -42,8 +41,8 @@ end
 --------------------------------------------------
 function love.load()
   monolith = Monolith.new()
-  table.insert(players, Player.new())
-  table.insert(players, Player.new())
+  table.insert(players, Player.new(1))
+  table.insert(players, Player.new(2))
 end
 
 --------------------------------------------------
@@ -61,7 +60,7 @@ end
 local monolith = require("monolith.core").new()
 
 function love.draw()
-    love.graphics.captureScreenshot(monolith.sendToLed)
+  love.graphics.captureScreenshot(monolith.sendToLed)
 end
 ```
 
@@ -70,20 +69,20 @@ end
 詳細は[monolith/default_input_settings.lua](../monolith/default_input_settings.lua)を参照.
 
 ```lua
-local monolith = require("monolith.core").new()
 local user_setting = {
-    type     = 'keyboard',
-    mapping  = {
-        fire = 'z',
-        jump = 'x',
-    },
+  type     = 'keyboard',
+  mapping  = {
+    fire   = 'z',
+    jump   = 'x',
+  },
 }
+
+local monolith = require("monolith.core").new()
 monolith.input:setUserSetting(1, user_setting)
 
 function love.draw()
-    local b1 = monolith.input:getButton(1, 'fire')
-    local b2 = monolith.input:getButton(1, 'jump')
-    love.graphics.print(tostring(b1) .. ', ' .. tostring(b2))
+  local b1 = monolith.input:getButton(1, 'fire')
+  local b2 = monolith.input:getButton(1, 'jump')
+  love.graphics.print(tostring(b1) .. ', ' .. tostring(b2))
 end
 ```
-
