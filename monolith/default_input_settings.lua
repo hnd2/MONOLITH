@@ -37,8 +37,7 @@ return {
         },
         options = {
             guid = '',
-            -- name = 'XInput Controller #1',
-            name = 'USB  GAMEPAD        ',
+            name = 'XInput Controller #1',
         },
     },
 }

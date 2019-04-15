@@ -1,6 +1,6 @@
-Monolith
+MONOLITH Library
 ---------------
-## Usage
+### Basic
 ```lua
 local Monolith = require("monolith.core")
 local monolith = nil
@@ -55,3 +55,35 @@ function love.draw()
   monolith:endDraw()
 end
 ```
+
+### Custom draw
+```lua
+local monolith = require("monolith.core").new()
+
+function love.draw()
+    love.graphics.captureScreenshot(monolith.sendToLed)
+end
+```
+
+### Custom input
+
+詳細は[monolith/default_input_settings.lua](../monolith/default_input_settings.lua)を参照.
+
+```lua
+local monolith = require("monolith.core").new()
+local user_setting = {
+    type     = 'keyboard',
+    mapping  = {
+        fire = 'z',
+        jump = 'x',
+    },
+}
+monolith.input:setUserSetting(1, user_setting)
+
+function love.draw()
+    local b1 = monolith.input:getButton(1, 'fire')
+    local b2 = monolith.input:getButton(1, 'jump')
+    love.graphics.print(tostring(b1) .. ', ' .. tostring(b2))
+end
+```
+
