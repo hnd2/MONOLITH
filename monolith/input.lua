@@ -25,7 +25,7 @@ Constants.JOYSTICK_INPUT_TYPE_BUTTON = 'button'
 -- @tfield[opt=Constants.TYPE_KEYBOARD] string type Controller type
 -- @tfield table mapping axis/button mapping
 -- @tfield table options type specific options
-UserSetting = {
+local UserSetting = {
     type    = Constants.TYPE_KEYBOARD,
     mapping = {},
     options = {},
@@ -116,7 +116,7 @@ end
 
 --------------------------------------------------
 -- Set user input mapping.
--- @tparam int user user index
+-- @tparam number user user index
 -- @tparam Input.UserSetting setting user setting
 function _M:setUserSetting(user, setting)
     -- clear history
@@ -131,7 +131,7 @@ end
 --------------------------------------------------
 -- Get input is available
 -- @tparam number user user index
--- @return bool value
+-- @treturn boolean value
 function _M:isAvailable(user)
     local userSetting = self.userSettings[user]
     if userSetting.type == Constants.INPUT_TYPE_KEYBOARD then
@@ -144,8 +144,8 @@ end
 --------------------------------------------------
 -- Get button is down.
 -- @tparam number user user index
--- @tparam object key button key
--- @return bool value
+-- @tparam string key button key
+-- @treturn boolean value
 function _M:getButton(user, key)
     local userSetting = self.userSettings[user]
     if userSetting == nil then
@@ -166,9 +166,9 @@ end
 
 --------------------------------------------------
 -- Get button is just down.
--- @param user user index
--- @param key button key
--- @return bool value
+-- @tparam number user user index
+-- @tparam string key button key
+-- @treturn boolean value
 function _M:getButtonDown(user, key)
     return self:getButtonCount(user, key) < 0
         and self:getButton(user, key)
@@ -176,9 +176,9 @@ end
 
 --------------------------------------------------
 -- Get button is just up.
--- @param user user index
--- @param key button key
--- @return bool value
+-- @tparam number user user index
+-- @tparam number key button key
+-- @treturn boolean value
 function _M:getButtonUp(user, key)
     return self:getButtonCount(user, key) > 0
         and (not self:getButton(user, key))
@@ -187,18 +187,18 @@ end
 --------------------------------------------------
 -- Get button down/up count.
 -- Plus value is down, minus values is up.
--- @param user user index
--- @param key button key
--- @return num counts
+-- @tparam number user user index
+-- @tparam string key button key
+-- @treturn number num counts
 function _M:getButtonCount(user, key)
     return self.prevInputs[user][key]
 end
 
 --------------------------------------------------
 -- Get axis value.
--- @param user user index
--- @param key button key
--- @return float value, range: -1.0 ~ 1.0
+-- @tparam number user user index
+-- @tparam string key button key
+-- @treturn float value, range: -1.0 ~ 1.0
 function _M:getAxis(user, key)
     local userSetting = self.userSettings[user]
     if userSetting.type == Constants.INPUT_TYPE_KEYBOARD then
@@ -215,3 +215,5 @@ function _M:getAxis(user, key)
         return getJoystickValue(joystick, userSetting, key)
     end
 end
+
+return _M
