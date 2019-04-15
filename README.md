@@ -66,7 +66,7 @@ end
 
 ### Custom input
 
-詳細は[monolith/default_input_settings.lua](../monolith/default_input_settings.lua)を参照.
+詳細は[monolith/default_input_settings.lua](monolith/default_input_settings.lua)を参照.
 
 ```lua
 local user_setting = {
