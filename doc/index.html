@@ -27,37 +27,469 @@
 <h1>MONOLITH</h1>
 
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
 
 
 <h2>Classes</h2>
 <ul class="nowrap">
-  <li><a href="classes/Monolith.html">Monolith</a></li>
-  <li><a href="classes/Input.html">Input</a></li>
+  <li><strong>Input</strong></li>
 </ul>
 
 </div>
 
 <div id="content">
 
+<h1>Class <code>Input</code></h1>
+<p>Multi device input manager</p>
+<p></p>
 
 
-<h2>Classes</h2>
-<table class="module_list">
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
 	<tr>
-		<td class="name"  nowrap><a href="classes/Monolith.html">Monolith</a></td>
-		<td class="summary">Monolith's core class</td>
-	</tr>
-	<tr>
-		<td class="name"  nowrap><a href="classes/Input.html">Input</a></td>
-		<td class="summary">Multi device input manager</td>
+	<td class="name" nowrap><a href="#Input.UserSetting">Input.UserSetting</a></td>
+	<td class="summary">User setting</td>
 	</tr>
 </table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Constants.INPUT_TYPE_KEYBOARD">Constants.INPUT_TYPE_KEYBOARD</a></td>
+	<td class="summary">'keyboard'</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Constants.INPUT_TYPE_JOYSTICK">Constants.INPUT_TYPE_JOYSTICK</a></td>
+	<td class="summary">'joystick'</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Constants.JOYSTICK_INPUT_TYPE_AXIS">Constants.JOYSTICK_INPUT_TYPE_AXIS</a></td>
+	<td class="summary">'axis'</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Constants.JOYSTICK_INPUT_TYPE_BUTTON">Constants.JOYSTICK_INPUT_TYPE_BUTTON</a></td>
+	<td class="summary">'button'</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Input:new">Input:new ()</a></td>
+	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:update">Input:update ()</a></td>
+	<td class="summary">Update input history</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:setUserSetting">Input:setUserSetting (user, setting)</a></td>
+	<td class="summary">Set user input mapping.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:isAvailable">Input:isAvailable (user)</a></td>
+	<td class="summary">Get input is available</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:getButton">Input:getButton (user, key)</a></td>
+	<td class="summary">Get button is down.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:getButtonDown">Input:getButtonDown (user, key)</a></td>
+	<td class="summary">Get button is just down.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:getButtonUp">Input:getButtonUp (user, key)</a></td>
+	<td class="summary">Get button is just up.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:getButtonCount">Input:getButtonCount (user, key)</a></td>
+	<td class="summary">Get button down/up count.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Input:getAxis">Input:getAxis (user, key)</a></td>
+	<td class="summary">Get axis value.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Input.UserSetting"></a>
+    <strong>Input.UserSetting</strong>
+    </dt>
+    <dd>
+    User setting
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Controller type
+         (<em>default</em> Constants.TYPE_KEYBOARD)
+        </li>
+        <li><span class="parameter">mapping</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         axis/button mapping
+        </li>
+        <li><span class="parameter">options</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         type specific options
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Constants.INPUT_TYPE_KEYBOARD"></a>
+    <strong>Constants.INPUT_TYPE_KEYBOARD</strong>
+    </dt>
+    <dd>
+    'keyboard'
+
+
+    <ul>
+        <li><span class="parameter">INPUT_TYPE_KEYBOARD</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         'keyboard'
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Constants.INPUT_TYPE_JOYSTICK"></a>
+    <strong>Constants.INPUT_TYPE_JOYSTICK</strong>
+    </dt>
+    <dd>
+    'joystick'
+
+
+    <ul>
+        <li><span class="parameter">INPUT_TYPE_JOYSTICK</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         'joystick'
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Constants.JOYSTICK_INPUT_TYPE_AXIS"></a>
+    <strong>Constants.JOYSTICK_INPUT_TYPE_AXIS</strong>
+    </dt>
+    <dd>
+    'axis'
+
+
+    <ul>
+        <li><span class="parameter">JOYSTICK_INPUT_TYPE_AXIS</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         'axis'
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Constants.JOYSTICK_INPUT_TYPE_BUTTON"></a>
+    <strong>Constants.JOYSTICK_INPUT_TYPE_BUTTON</strong>
+    </dt>
+    <dd>
+    'button'
+
+
+    <ul>
+        <li><span class="parameter">JOYSTICK_INPUT_TYPE_BUTTON</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         'button'
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Input:new"></a>
+    <strong>Input:new ()</strong>
+    </dt>
+    <dd>
+    Constructor
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">input</span></span>
+        Input instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:update"></a>
+    <strong>Input:update ()</strong>
+    </dt>
+    <dd>
+    Update input history
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:setUserSetting"></a>
+    <strong>Input:setUserSetting (user, setting)</strong>
+    </dt>
+    <dd>
+    Set user input mapping.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">setting</span>
+            <span class="types"><a class="type" href="index.html#Input.UserSetting">Input.UserSetting</a></span>
+         user setting
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:isAvailable"></a>
+    <strong>Input:isAvailable (user)</strong>
+    </dt>
+    <dd>
+    Get input is available
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:getButton"></a>
+    <strong>Input:getButton (user, key)</strong>
+    </dt>
+    <dd>
+    Get button is down.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         button key
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:getButtonDown"></a>
+    <strong>Input:getButtonDown (user, key)</strong>
+    </dt>
+    <dd>
+    Get button is just down.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         button key
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:getButtonUp"></a>
+    <strong>Input:getButtonUp (user, key)</strong>
+    </dt>
+    <dd>
+    Get button is just up.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><span class="type">number</span></span>
+         button key
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:getButtonCount"></a>
+    <strong>Input:getButtonCount (user, key)</strong>
+    </dt>
+    <dd>
+    Get button down/up count.
+ Plus value is down, minus values is up.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         button key
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        num counts
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Input:getAxis"></a>
+    <strong>Input:getAxis (user, key)</strong>
+    </dt>
+    <dd>
+    Get axis value.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+            <span class="types"><span class="type">number</span></span>
+         user index
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         button key
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">float</span></span>
+        value, range: -1.0 ~ 1.0
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2019-04-15 12:01:46 </i>
+<i style="float:right;">Last updated 2019-04-16 19:48:30 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

@@ -204,6 +204,20 @@ function _M:getResolution()
 end
 
 --------------------------------------------------
+-- Get width.
+-- @treturn number width
+function _M:getWidth()
+  return self.resolution[1]
+end
+
+--------------------------------------------------
+-- Get height.
+-- @treturn number height
+function _M:getHeight()
+  return self.resolution[2]
+end
+
+--------------------------------------------------
 -- Get elapsed frame count.
 -- @treturn number frame count
 function _M:getFrameCount()
