@@ -40,7 +40,7 @@ local InitOptions = {
   ledBrightness    = 1.0,
   ledColorBits     = 8,
   ledPwmNanoseconds = 100,
-  ledResetChip     = true,
+  ledResetChip     = false,
   inputEnabled     = true,
 }
 
