@@ -1,11 +1,12 @@
-local source_dir = love.filesystem.getSource()
-package.cpath = package.cpath .. ';'
-    .. source_dir .. '/monolith/?.so'
-
+--------------------------------------------------
 -- Monolith's core class
 -- @classmod Monolith
 local _M = {}
 local mt = { __index = _M }
+
+local source_dir = love.filesystem.getSource()
+package.cpath = package.cpath .. ';'
+    .. source_dir .. '/monolith/?.so'
 
 --------------------------------------------------
 -- Input
