@@ -87,6 +87,7 @@ function _M.new(options)
         pwm_lsb_nanoseconds = options.ledPwmNanoseconds,
         pwm_bits            = options.ledColorBits,
         brightness          = options.ledBrightness,
+        reset_chip          = options.ledResetChip and 1 or 0,
       })
     -- object.ledMatrix.resetMatrix()
   end
