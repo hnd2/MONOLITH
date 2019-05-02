@@ -4,14 +4,16 @@
 local _M = {}
 local mt = { __index = _M }
 
-local source_dir = love.filesystem.getSource()
-package.cpath = package.cpath .. ';'
-    .. source_dir .. '/monolith/?.so'
-
 --------------------------------------------------
 -- Input
 -- @tfield Input input
 _M.input = require('monolith.input')
+
+--------------------------------------------------
+-- ModuleManager
+-- @tfield ModuleManager moduleManager
+_M.moduleManager = require('monolith.module_manager')
+_M.moduleManager.addCpath('monolith')
 
 --------------------------------------------------
 -- InitOptions
